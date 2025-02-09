@@ -158,37 +158,37 @@ export const deleteMessage: RequestHandler = async (req, res) => {
 	}
 };
 
-export const deleteMessageForMe: RequestHandler = async (req, res) => {
-	try {
-		const { sessionId } = req.params;
-		/**
-		 * @type {string} jid
-		 * @type {string} type
-		 * @type {object} message
-		 *
-		 * @example {
-		 * 	"jid": "120363xxx8@g.us",
-		 * 	"type": "group",
-		 * 	"message": {
-		 * 		"id": "ATWYHDNNWU81732J",
-		 * 		"fromMe": false,
-		 * 		"timestamp": "1654823909"
-		 * 	}
-		 * }
-		 * @returns {object} result
-		 */
-		const { jid, type = "number", message } = req.body;
-		const session = WhatsappService.getSession(sessionId)!;
+// export const deleteMessageForMe: RequestHandler = async (req, res) => {
+// 	try {
+// 		const { sessionId } = req.params;
+// 		/**
+// 		 * @type {string} jid
+// 		 * @type {string} type
+// 		 * @type {object} message
+// 		 *
+// 		 * @example {
+// 		 * 	"jid": "120363xxx8@g.us",
+// 		 * 	"type": "group",
+// 		 * 	"message": {
+// 		 * 		"id": "ATWYHDNNWU81732J",
+// 		 * 		"fromMe": false,
+// 		 * 		"timestamp": "1654823909"
+// 		 * 	}
+// 		 * }
+// 		 * @returns {object} result
+// 		 */
+// 		const { jid, type = "number", message } = req.body;
+// 		const session = WhatsappService.getSession(sessionId)!;
 
-		const exists = await WhatsappService.jidExists(session, jid, type);
-		if (!exists) return res.status(400).json({ error: "JID does not exists" });
+// 		const exists = await WhatsappService.jidExists(session, jid, type);
+// 		if (!exists) return res.status(400).json({ error: "JID does not exists" });
 
-		const result = await session.chatModify({ clear: { messages: [message] } }, jid);
+// 		const result = await session.chatModify({ clear: { messages: [message] } }, jid);
 
-		res.status(200).json(result);
-	} catch (e) {
-		const message = "An error occured during message delete";
-		logger.error(e, message);
-		res.status(500).json({ error: message });
-	}
-};
+// 		res.status(200).json(result);
+// 	} catch (e) {
+// 		const message = "An error occured during message delete";
+// 		logger.error(e, message);
+// 		res.status(500).json({ error: message });
+// 	}
+// };

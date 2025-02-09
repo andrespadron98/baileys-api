@@ -257,10 +257,11 @@ class WhatsappService {
 	}
 
 	static getSessionStatus(session: Session) {
-		const state = ["CONNECTING", "CONNECTED", "DISCONNECTING", "DISCONNECTED"];
-		let status = state[(session.ws as WebSocketType).readyState];
-		status = session.user ? "AUTHENTICATED" : status;
-		return session.waStatus !== WAStatus.Unknown ? session.waStatus : status.toLowerCase();
+		// const state = ["CONNECTING", "CONNECTED", "DISCONNECTING", "DISCONNECTED"];
+		// let status = state[(session.ws as WebSocketType).readyState];
+		// status = session.user ? "AUTHENTICATED" : status;
+		// return session.waStatus !== WAStatus.Unknown ? session.waStatus : status.toLowerCase();
+		return session.waStatus;
 	}
 
 	static listSessions() {
