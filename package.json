@@ -5,7 +5,8 @@
 	"main": "dist/main.js",
 	"scripts": {
 		"build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src",
-		"start": "node -r tsconfig-paths/register -r pm2 start ./dist/main.js",
+		"start": "node -r tsconfig-paths/register -r ts-node ./dist/main.js",
+		"server": "pm2 start dist/main.js --name 'baileys-api'",
 		"dev": "nodemon src/main.ts",
 		"lint": "eslint . --ext .ts",
 		"format": "prettier . --write",
